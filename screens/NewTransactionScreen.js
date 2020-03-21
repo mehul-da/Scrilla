@@ -9,8 +9,8 @@ export default class NewTransactionHistory extends React.Component {
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
             scrollEnabled={false}>
-            <View style = {{alignItems: 'center', paddingTop: 50}}>
-                <Text style = {{color: "#3163B0", fontSize: 29, fontWeight: "bold", fontFamily: "Avenir"}}>Add Transaction</Text>
+            <View style = {{alignItems: 'center', paddingTop: 60}}>
+                <Text style = {{color: "#3163B0", fontSize: 36, fontWeight: "bold", fontFamily: "Avenir"}}>Add Transaction</Text>
             </View>
             <View style = {{alignItems: 'center', paddingTop: 70}}>
             <TextInput 
@@ -36,7 +36,7 @@ export default class NewTransactionHistory extends React.Component {
             placeholder = "Return Date (MM/DD/YYYY)"
             placeholderTextColor = "black"/>
             </View>
-            <View style = {{alignItems: 'center', paddingTop: 20}}>
+            <View style = {{alignItems: 'center', paddingTop: 30}}>
             <Icon 
             type = "material-icons" 
             name = "done" 
