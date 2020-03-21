@@ -16,7 +16,7 @@ export default class AppNavigator extends React.Component {
     render() {
         return (
             <NavigationContainer>
-            <Tab.Navigator initialRouteName = "Home" shifting = {false} barStyle = {{backgroundColor: 'black'}}>
+            <Tab.Navigator initialRouteName = "Home" shifting = {false} barStyle = {{backgroundColor: '#3163B0'}}>
                 <Tab.Screen
                 name="Home" 
                 component={HomeScreen}
