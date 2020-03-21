@@ -5,7 +5,9 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-                <Text>HOME SCREEN</Text>
+                <View style = {{alignItems: 'center', paddingTop: 50}}>
+                    <Text style = {{color: "#3163B0", fontSize: 29, fontWeight: "bold", fontFamily: "Avenir"}}>Home</Text>
+                </View>
             </View>
         );
     }

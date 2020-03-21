@@ -13,10 +13,10 @@ export default class CalendarScreen extends React.Component {
     render() {
         return (
             <View>
-                <View style = {{alignItems: 'center', paddingTop: 40}}>
-                    <Text style = {{fontSize: 25, fontWeight: "bold", fontFamily: "Trebuchet MS"}}>Calendar</Text>
+                <View style = {{alignItems: 'center', paddingTop: 50}}>
+                    <Text style = {{color: "#3163B0", fontSize: 29, fontWeight: "bold", fontFamily: "Avenir"}}>Calendar</Text>
                 </View>
-                <View style = {{paddingTop: 30, padding: 15}}>
+                <View style = {{paddingTop: 40, padding: 15}}>
                     <Calendar
                     minDate = {'2020-03-01'}
                     onDayPress = {(day) => {
@@ -27,7 +27,7 @@ export default class CalendarScreen extends React.Component {
                         this.setState({date: ""})
                     }}/>
                     <View style = {{alignItems: 'center', paddingTop: 20}}>
-                        <Text style = {{fontFamily: "Trebuchet MS", fontSize: 20}}>{this.state.date}</Text>
+                        <Text style = {{fontFamily: "Avenir", fontSize: 20}}>{this.state.date}</Text>
                     </View>
                 </View>
             </View>

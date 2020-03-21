@@ -5,7 +5,9 @@ export default class TransactionHistoryScreen extends React.Component {
     render() {
         return (
             <View>
-                <Text>TRANSACTION HISTORY SCREEN</Text>
+                <View style = {{alignItems: 'center', paddingTop: 50}}>
+                    <Text style = {{color: "#3163B0", fontSize: 29, fontWeight: "bold", fontFamily: "Avenir"}}>Transaction History</Text>
+                </View>
             </View>
         );
     }
