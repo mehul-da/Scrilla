@@ -8,7 +8,8 @@ export default class NewTransactionHistory extends React.Component {
         return (
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
-            scrollEnabled={false}>
+            scrollEnabled={true}
+            style = {{backgroundColor: 'white'}}>
             <View style = {{alignItems: 'center', paddingTop: 60}}>
                 <Text style = {{color: "#3163B0", fontSize: 36, fontWeight: "bold", fontFamily: "Avenir"}}>Add Transaction</Text>
             </View>

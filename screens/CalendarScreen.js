@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View, Modal, Alert, TouchableHighlight } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { AntDesign } from 'react-native-vector-icons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default class CalendarScreen extends React.Component {
     constructor(props) {
@@ -14,7 +15,10 @@ export default class CalendarScreen extends React.Component {
 
     render() {
         return (
-            <View>
+            <KeyboardAwareScrollView
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={true}
+            style = {{backgroundColor: 'white'}}>
                 <Modal
                 animationType="slide"
                 transparent={false}
@@ -36,7 +40,7 @@ export default class CalendarScreen extends React.Component {
                 <View style = {{alignItems: 'center', paddingTop: 60}}>
                     <Text style = {{color: "#3163B0", fontSize: 36, fontWeight: "bold", fontFamily: "Avenir"}}>Calendar</Text>
                 </View>
-                <View style = {{paddingTop: 80, padding: 15}}>
+                <View style = {{paddingTop: 70, padding: 15}}>
                     <Calendar
                     minDate = {'2020-03-01'}
                     onDayPress = {(day) => {
@@ -44,7 +48,7 @@ export default class CalendarScreen extends React.Component {
                         this.setState({showModal: true})
                         }}/>
                 </View>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
