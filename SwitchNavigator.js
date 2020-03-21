@@ -14,6 +14,9 @@ const SwitchNavigator = createSwitchNavigator({
         Login: {
             screen: LoginScreen
         },
+        Home: {
+            screen: HomeScreen
+        },
         Signup: {
             screen: SignupScreen
         }

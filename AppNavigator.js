@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { FontAwesome } from 'react-native-vector-icons';
@@ -22,7 +23,7 @@ export default class AppNavigator extends React.Component {
                 options = {{
                 tabBarIcon: () =>
                 <FontAwesome5 name = "home" size = {23} color = "white"/>
-                }}/>
+                }} />
                 <Tab.Screen 
                 name="Calendar" 
                 component={CalendarScreen}
