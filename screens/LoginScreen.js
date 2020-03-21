@@ -27,7 +27,12 @@ const styles = StyleSheet.create({
     icon: {
         alignSelf: 'center',
         justifyContent: 'center',
-        paddingTop: 10
+        paddingTop: 10,
+        paddingBottom: 5
+    },
+    smallText: {
+        color: 'black',
+        fontSize: 15
     }
 })
 
@@ -62,6 +67,9 @@ export default class LoginScreen extends React.Component {
                         name='arrow-right'
                         type='font-awesome'
                         onPress={() => this.props.navigation.navigate('MainApp')} />
+                </View>
+                <View>
+                    <Text style = {styles.smallText}> Don't have an account? </Text>
                 </View>
             </View>
         )
