@@ -65,27 +65,30 @@ const styles = StyleSheet.create({
 class SignupScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            alerts: false
-        }
     }
     handleSignup = () => {
-        let emailRegex = /[A-Za-z][A-Za-z1-9]*@[A-Za-z]+.com/;
+        let alerts = false;
+        let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
         let nameRegex = /[A-Za-z]+\s[A-Za-z]+/;
         if (nameRegex.test(this.props.user.username)) {
             if (emailRegex.test(this.props.user.email)) {
                 if (this.props.user.password.length >= 8) {
                     const user = new Parse.User();
-                    user.set('username', this.props.user.username);
-                    user.set('email', this.props.user.email);
+                    user.set('username', this.props.user.email);
+                    user.set('name', this.props.user.username);
                     user.set('password', this.props.user.password);
                     user.signUp().then((user) => {
                         this.props.signup(user);
                     }).catch(error => {
                         this.props.updateAlerts("yes");
-                        Alert.alert("ERROR", "The username entered has already been taken.");
+                        alerts = true;
+                        Alert.alert("ERROR", "The email entered has already been taken.");
+                    }).then(() => {
+                        if (!alerts) {
+                            this.props.signup(user);
+                            this.props.navigation.navigate('MainApp');
+                        }
                     });
-                    this.handleNewUser(user);
                 } else {
                     Alert.alert("ERROR", "Please make sure the password entered is at least 8 characters long.");
                 }
@@ -96,14 +99,7 @@ class SignupScreen extends React.Component {
             Alert.alert("ERROR", "Please make sure a first and last name is entered.");
         }
     }
-    handleNewUser = (user) => {
-        console.log("alerts" + this.props.user.alerts);
-        if (this.props.user.alerts === "no") {
-            this.props.signup(user);
-            this.props.navigation.navigate('MainApp');
-            this.props.updateAlerts(false);
-        }
-    }
+
     render() {
         return (
             <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center', backgroundColor: '#c7d8f2'}}>

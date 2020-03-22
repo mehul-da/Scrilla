@@ -1,6 +1,30 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, TextInput, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Image, Alert } from 'react-native';
 import { Icon, ThemeProvider, Input } from  'react-native-elements';
+import Parse from 'parse';
+import 'localstorage-polyfill';
+import { AsyncStorage } from 'react-native';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { updateName, updateEmail, updatePassword, login, updateAlerts } from '../actions/user';
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ updateEmail, updatePassword, updateName, login, updateAlerts }, dispatch)
+}
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+Parse.setAsyncStorage(AsyncStorage);
+Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
+Parse.initialize(
+   'G0R2zZz5RW2gdK2QYz1rrtFLaOwh2sGRL9PoFJMY', // This is your Application ID
+  'tPM7b3CMduKdNA34LkYrAmBw0LND1fk2eupLxvNl' // This is your Javascript key
+);
+
 
 const styles = StyleSheet.create({
     screenTitle: {
@@ -39,7 +63,19 @@ const styles = StyleSheet.create({
     }
 })
 
-export default class LoginScreen extends React.Component {
+class LoginScreen extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    handleLogin = () => {
+        Parse.User.logIn(this.props.user.email, this.props.user.password).then((user) => {
+            // Do stuff after successful login
+            this.props.navigation.navigate('MainApp');
+            console.log('Logged in user', user);
+          }).catch(error => {
+            Alert.alert("ERROR", "Invalid email/password.")
+          })
+    }
     render() {
         return (
             <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center', backgroundColor: '#c7d8f2'}}>
@@ -52,6 +88,8 @@ export default class LoginScreen extends React.Component {
                          leftIconContainerStyle = {{paddingRight: 5}} 
                          autoCorrect = {false}
                          maxLength = {50}
+                         onChangeText = {(text) => this.props.updateEmail(text)}
+                         value = {this.props.user.email}
                          autoCapitalize = 'none' />
                 </View>
                 <View style = {{paddingTop: 15, width: 260}}>
@@ -60,7 +98,9 @@ export default class LoginScreen extends React.Component {
                     autoCapitalize = 'none'
                     autoCorrect = {false}
                     maxLength = {30}
+                    onChangeText = {(text) => this.props.updatePassword(text)}
                     leftIconContainerStyle = {{paddingRight: 5}}
+                    value = {this.props.user.password}
                     leftIcon={{ type: 'material-community', name: 'textbox-password' }} />
                 </View>
                 <View style = {styles.icon}>
@@ -70,7 +110,7 @@ export default class LoginScreen extends React.Component {
                         color = '#3163B0'
                         name='login'
                         type='material-community'
-                        onPress={() => this.props.navigation.navigate('MainApp')} />
+                        onPress={this.handleLogin} />
                 </View>
                 <View>
                     <Text style = {styles.smallText}> Don't have an account? </Text>
@@ -80,3 +120,8 @@ export default class LoginScreen extends React.Component {
         )
     }
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginScreen)
