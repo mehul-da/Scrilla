@@ -39,7 +39,7 @@ export default class AppNavigator extends React.Component {
                 <FontAwesome name = "history" size = {25} color = "white"/>
                 }}/>
                 <Tab.Screen 
-                name="New Trans." 
+                name="Add Trans." 
                 component={NewTransactionScreen}
                 options = {{
                 tabBarIcon: () =>

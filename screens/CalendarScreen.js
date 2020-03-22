@@ -17,18 +17,18 @@ export default class CalendarScreen extends React.Component {
         return (
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
-            scrollEnabled={true}
-            style = {{backgroundColor: 'white'}}>
+            scrollEnabled={true}>
                 <Modal
                 animationType="slide"
                 transparent={false}
                 visible={this.state.showModal}>
-                <View style={{marginTop: 22}}>
+                <View style={{marginTop: 22,}}>
                     <View style = {{paddingTop: 20, alignItems: 'center'}}>
-                    <Text style = {{fontSize: 35}}>{this.state.date}</Text>
+                    <Text style = {{fontSize: 35, color: "#3163B0"}}>{this.state.date}</Text>
                         <View style = {{paddingTop: 500}}>
                             <AntDesign
                             name = "closecircle"
+                            style = {{color: "#3163B0"}}
                             size = {55}
                             onPress={() => {
                             this.setState({showModal: false})
