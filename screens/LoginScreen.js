@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TextInput, Image } from 'react-native';
-import { Icon, ThemeProvider } from  'react-native-elements';
+import { Icon, ThemeProvider, Input } from  'react-native-elements';
 
 const styles = StyleSheet.create({
     screenTitle: {
@@ -18,58 +18,63 @@ const styles = StyleSheet.create({
         height: 43, 
         borderRadius: 11, 
         borderWidth: 2, 
-        borderColor: "black", 
+        borderColor: "#3163B0", 
         color: "black",
         alignSelf: 'center',
         justifyContent: 'center',
         paddingLeft: 5
     },
+    inputText: {
+        width: 260
+    },
     icon: {
         alignSelf: 'center',
         justifyContent: 'center',
-        paddingTop: 10,
+        paddingTop: 15,
         paddingBottom: 5
     },
     smallText: {
         color: 'black',
-        fontSize: 15
+        fontSize: 13
     }
 })
 
 export default class LoginScreen extends React.Component {
     render() {
         return (
-            <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+            <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center', backgroundColor: '#c7d8f2'}}>
                 <View style = {{paddingBottom: 20}}>
                 <Image source = {require('../logo.png')} style = {{width: 350, height: 120, alignSelf: 'center'}}/>
                 </View>
-                <View style = {styles.textInput}>
-                    <TextInput 
-                    placeholder = ' Email'
-                    autoCorrect = {false} 
-                    placeholderTextColor = 'black'
-                    autoCapitalize = 'none' />
+                <View style = {styles.inputText}>
+                    <Input placeholder = 'Email'
+                         leftIcon={{ type: 'material-community', name: 'email' }} 
+                         leftIconContainerStyle = {{paddingRight: 5}} 
+                         autoCorrect = {false}
+                         maxLength = {50}
+                         autoCapitalize = 'none' />
                 </View>
-                <View style = {{paddingTop: 15}}>
-                    <TextInput
-                    style = {styles.textInput}
-                    placeholder = ' Password'
+                <View style = {{paddingTop: 15, width: 260}}>
+                    <Input placeholder = 'Password'
                     secureTextEntry = {true}
                     autoCapitalize = 'none'
-                    placeholderTextColor = 'black'
-                    autoCorrect = {false} />
+                    autoCorrect = {false}
+                    maxLength = {30}
+                    leftIconContainerStyle = {{paddingRight: 5}}
+                    leftIcon={{ type: 'material-community', name: 'textbox-password' }} />
                 </View>
                 <View style = {styles.icon}>
                     <Icon
                         raised = {true}
                         reverse = {true}
-                        color = 'black'
-                        name='arrow-right'
-                        type='font-awesome'
+                        color = '#3163B0'
+                        name='login'
+                        type='material-community'
                         onPress={() => this.props.navigation.navigate('MainApp')} />
                 </View>
                 <View>
                     <Text style = {styles.smallText}> Don't have an account? </Text>
+                    <Text style = {{color: '#3163B0', fontSize: 13, alignSelf: 'center'}} onPress = {() => this.props.navigation.navigate('Signup')}> Sign Up </Text>
                 </View>
             </View>
         )

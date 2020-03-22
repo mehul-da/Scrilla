@@ -8,26 +8,29 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@mdi/font": "^5.0.45",
     "@react-navigation/bottom-tabs": "^5.2.2",
     "@react-navigation/material-bottom-tabs": "^5.1.4",
     "@react-navigation/native": "^5.1.1",
+    "events": "^3.1.0",
     "expo": "~36.0.0",
+    "localstorage-polyfill": "^1.0.1",
+    "parse": "^2.11.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-<<<<<<< HEAD
-    "react-native-elements": "^1.2.7",
-    "react-native-gesture-handler": "^1.6.1",
-=======
     "react-native-calendars": "^1.264.0",
     "react-native-elements": "^1.2.7",
+    "react-native-gesture-handler": "^1.6.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-material-dropdown": "^0.11.1",
->>>>>>> 765cf9a06f44d82fb4544f47d59551fc8f821334
     "react-native-paper": "^3.6.0",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
-    "react-navigation": "^4.3.2"
+    "react-navigation": "^4.3.2",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
