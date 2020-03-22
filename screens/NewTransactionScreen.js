@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon, Input } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default class NewTransactionHistory extends React.Component {
@@ -8,40 +8,45 @@ export default class NewTransactionHistory extends React.Component {
         return (
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
-            scrollEnabled={true}
-            style = {{backgroundColor: 'white'}}>
+            scrollEnabled={true}>
             <View style = {{alignItems: 'center', paddingTop: 60}}>
                 <Text style = {{color: "#3163B0", fontSize: 36, fontWeight: "bold", fontFamily: "Avenir"}}>Add Transaction</Text>
             </View>
-            <View style = {{alignItems: 'center', paddingTop: 70}}>
-            <TextInput 
-            style = {styles.textInput}
-            placeholder = "Shop/Store"
-            placeholderTextColor = "black"/>
+            <View style = {{alignItems: 'center', justifyContent: 'center'}}>
+            <View style = {{paddingTop: 70, width: 300}}>
+            <Input
+            leftIcon={{ type: 'material-community', name: 'store' }} 
+            leftIconContainerStyle = {{paddingRight: 10}}
+            inputStyle = {{fontSize: 16}}
+            placeholder = "Shop/Store"/>
             </View>
-            <View style = {{alignItems: 'center', paddingTop: 20}}>
-            <TextInput 
-            style = {styles.textInput}
-            placeholder = "Type of Item"
-            placeholderTextColor = "black"/>
+            <View style = {{paddingTop: 20, width: 300}}>
+            <Input 
+            leftIcon={{ type: 'material-community', name: 'tshirt-crew' }} 
+            leftIconContainerStyle = {{paddingRight: 10}}
+            inputStyle = {{fontSize: 16}}
+            placeholder = "Item"/>
             </View>
-            <View style = {{alignItems: 'center', paddingTop: 20}}>
-            <TextInput 
-            style={styles.textInput}
-            placeholder = "Price of Item"
-            placeholderTextColor = "black"/>
+            <View style = {{paddingTop: 20, width: 300}}>
+            <Input 
+            leftIcon={{ type: 'entypo', name: 'price-tag' }} 
+            leftIconContainerStyle = {{paddingRight: 10}}
+            inputStyle = {{fontSize: 16}}
+            placeholder = "Price of Item"/>
             </View>
-            <View style = {{alignItems: 'center', paddingTop: 20}}>
-            <TextInput 
-            style={styles.textInput}
-            placeholder = "Return Date (MM/DD/YYYY)"
-            placeholderTextColor = "black"/>
+            <View style = {{paddingTop: 20, width: 300}}>
+            <Input 
+            leftIcon={{ type: 'material-icon', name: 'date-range' }} 
+            leftIconContainerStyle = {{paddingRight: 10}}
+            inputStyle = {{fontSize: 16}}
+            placeholder = "Return Date (MM/DD/YYYY)"/>
             </View>
-            <View style = {{alignItems: 'center', paddingTop: 30}}>
+            </View>
+            <View style = {{alignItems: 'center', paddingTop: 35}}>
             <Icon 
             type = "material-icons" 
             name = "done" 
-            size = {28} 
+            size = {26} 
             color = "#3163B0"
             iconStyle = {{fontSize: 33}} 
             reverse = {true}/>

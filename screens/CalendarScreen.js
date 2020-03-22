@@ -17,8 +17,7 @@ export default class CalendarScreen extends React.Component {
         return (
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
-            scrollEnabled={true}
-            style = {{backgroundColor: 'white'}}>
+            scrollEnabled={true}>
                 <Modal
                 animationType="slide"
                 transparent={false}
