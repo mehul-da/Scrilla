@@ -46,6 +46,7 @@ export default class AppNavigator extends React.Component {
                 <FontAwesome name = "plus" size = {23} color = "white"/>
                 }}/>
             </Tab.Navigator>
+            <Text style = {{fontSize: 18, backgroundColor: '#4273BC', textAlign: 'center', color: 'white', paddingBottom: 5, paddingTop: 3}} onPress = {() => this.props.navigation.navigate('Login')}> ---Log Out---  </Text>
             </NavigationContainer>
         );
     }

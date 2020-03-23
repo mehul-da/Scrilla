@@ -66,53 +66,43 @@ class SignupScreen extends React.Component {
     constructor(props) {
         super(props);
     }
+
     handleSignup = () => {
-        let alerts = false;
-        let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-        let nameRegex = /[A-Za-z]+\s[A-Za-z]+/;
-        if (nameRegex.test(this.props.user.username)) {
-            if (emailRegex.test(this.props.user.email)) {
-                if (this.props.user.password.length >= 8) {
-                    const user = new Parse.User();
-                    user.set('username', this.props.user.email);
-                    user.set('name', this.props.user.username);
-                    user.set('password', this.props.user.password);
-                    user.signUp().then((user) => {
-                        this.props.signup(user);
-                    }).catch(error => {
-                        this.props.updateAlerts("yes");
-                        alerts = true;
-                        Alert.alert("ERROR", "The email entered has already been taken.");
-                    }).then(() => {
-                        if (!alerts) {
-                            this.props.signup(user);
-                            this.props.navigation.navigate('MainApp');
-                        }
-                    });
-                } else {
-                    Alert.alert("ERROR", "Please make sure the password entered is at least 8 characters long.");
-                }
-            } else {
-                Alert.alert("ERROR", "Please make sure a valid email is entered.");
-            }   
-        } else {
-            Alert.alert("ERROR", "Please make sure a first and last name is entered.");
-        }
+        let allowNav = true;
+        const user = new Parse.User();
+        user.set('username', this.props.user.username);
+        user.set('email', this.props.user.email);
+        user.set('password', this.props.user.password);
+        user.signUp().then((user) => {
+             Parse.User.logOut();
+             Alert.alert("NOTE", "You are signed up. Please verify your e-mail to be logged in.");
+         }) .catch((error) => {
+            this.handleAlert(error.message);
+            allowNav = false;
+            // Alert.alert("NOTE", error.code);
+          }).then(() => {
+              if (allowNav) {
+                this.props.navigation.navigate('Login');
+              }
+          })
+    }
+
+    handleAlert = (message) => {
+        Alert.alert("NOTE", message);
     }
 
     render() {
         return (
-            <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center', backgroundColor: '#c7d8f2'}}>
+            <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
                 <View style = {styles.screenTitle}>
                     <Text style = {styles.screenTitle}> Sign Up </Text>
                 </View>
                 <View style = {styles.inputText}>
-                    <Input placeholder = 'Name (First & Last)'
+                    <Input placeholder = 'Username'
                          leftIcon={{ type: 'material-community', name: 'account' }} 
                          leftIconContainerStyle = {{paddingRight: 5}} 
                          autoCorrect = {false}
                          maxLength = {50}
-                         value = {this.props.user.username}
                          onChangeText = {(text) => {this.props.updateName(text); this.props.updateAlerts("no")}}
                          autoCapitalize = 'none' />
                 </View>
@@ -146,7 +136,7 @@ class SignupScreen extends React.Component {
                 </View>
                 <View>
                     <Text style = {styles.smallText}> Already have an account? </Text>
-                    <Text style = {{color: '#3163B0', fontSize: 13, alignSelf: 'center'}} onPress = {() => this.props.navigation.navigate('Login')}> Log In </Text>
+                    <Text style = {{color: '#3163B0', fontSize: 13, alignSelf: 'center'}} onPress = {() => this.props.navigation.navigate('Login')}> Go Back </Text>
                 </View>
             </View>
         )

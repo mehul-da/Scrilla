@@ -68,28 +68,30 @@ class LoginScreen extends React.Component {
         super(props);
     }
     handleLogin = () => {
-        Parse.User.logIn(this.props.user.email, this.props.user.password).then((user) => {
-            // Do stuff after successful login
-            this.props.navigation.navigate('MainApp');
-            console.log('Logged in user', user);
-          }).catch(error => {
-            Alert.alert("ERROR", "Invalid email/password.")
-          })
+        Parse.User.logIn(this.props.user.username, this.props.user.password).then((user) => {
+            if (user.get('emailVerified')) {
+                this.props.navigation.navigate('MainApp');
+            } else {
+                Alert.alert("NOTE", 'Your email has not been verified yet. Please verify it so you can be logged in.');
+            }
+        }).catch((error) => {
+            Alert.alert("NOTE", "Your email has not been verified yet. Please verify it so you can be logged in.");
+        })
     }
     render() {
         return (
-            <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center', backgroundColor: '#c7d8f2'}}>
+            <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
                 <View style = {{paddingBottom: 20}}>
-                <Image source = {require('../logo.png')} style = {{width: 350, height: 120, alignSelf: 'center'}}/>
+                <Image source = {require('../logoScrilla.png')} style = {{width: 350, height: 120, alignSelf: 'center'}}/>
                 </View>
                 <View style = {styles.inputText}>
-                    <Input placeholder = 'Email'
-                         leftIcon={{ type: 'material-community', name: 'email' }} 
+                    <Input placeholder = 'Username'
+                         leftIcon={{ type: 'material-community', name: 'account' }} 
                          leftIconContainerStyle = {{paddingRight: 5}} 
                          autoCorrect = {false}
                          maxLength = {50}
-                         onChangeText = {(text) => this.props.updateEmail(text)}
-                         value = {this.props.user.email}
+                         value = {this.props.user.username}
+                         onChangeText = {(text) => this.props.updateName(text)}
                          autoCapitalize = 'none' />
                 </View>
                 <View style = {{paddingTop: 15, width: 260}}>
