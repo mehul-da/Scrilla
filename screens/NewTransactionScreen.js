@@ -1,10 +1,24 @@
 import * as React from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { Text, View, TextInput, StyleSheet, AsyncStorage, Alert } from 'react-native';
+import Parse from 'parse'
+import 'localstorage-polyfill'
 import { Icon, Input } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import * as SQLite from 'expo-sqlite';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { updateName, updateEmail, updatePassword, signup, updateAlerts } from '../actions/user';
 
-export default class NewTransactionHistory extends React.Component {
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ updateEmail, updatePassword, updateName, signup, updateAlerts }, dispatch)
+}
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+class NewTransactionHistory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +28,28 @@ export default class NewTransactionHistory extends React.Component {
             returnDate: ""
         }
     }
+
+    createItem = () => {
+        const Transactions = Parse.Object.extend("Transactions");
+        const transactions = new Transactions();
+    
+        transactions.set("store", this.state.store);
+        transactions.set("item", this.state.item)
+        transactions.set("price", this.state.price)
+        transactions.set("returnDate", this.state.returnDate)
+        transactions.set("status", "kept")
+        transactions.set("username", this.props.user.username);
+        
+        transactions.save().then(object => {
+            Alert.alert("Transaction was successful!")
+            this.setState({
+                store: "",
+                item: "",
+                price: "",
+                returnDate: ""
+            })
+        }).catch(error=> {Alert.alert("Transaction was unsuccessful! Please try again.")})
+      }
 
     render() {
         return (
@@ -29,6 +65,7 @@ export default class NewTransactionHistory extends React.Component {
             leftIcon={{ type: 'material-community', name: 'store' }} 
             leftIconContainerStyle = {{paddingRight: 10}}
             inputStyle = {{fontSize: 16}}
+            value = {this.state.store}
             onChangeText = {(text) => this.setState({store: text})}
             placeholder = "Shop/Store"/>
             </View>
@@ -37,6 +74,7 @@ export default class NewTransactionHistory extends React.Component {
             leftIcon={{ type: 'material-community', name: 'tshirt-crew' }} 
             leftIconContainerStyle = {{paddingRight: 10}}
             inputStyle = {{fontSize: 16}}
+            value = {this.state.item}
             onChangeText = {(text) => this.setState({item: text})}
             placeholder = "Item"/>
             </View>
@@ -45,6 +83,7 @@ export default class NewTransactionHistory extends React.Component {
             leftIcon={{ type: 'entypo', name: 'price-tag' }}
             leftIconContainerStyle = {{paddingRight: 10}}
             inputStyle = {{fontSize: 16}}
+            value = {this.state.price}
             onChangeText = {(text) => this.setState({price: text})}
             placeholder = "Price of Item"/>
             </View>
@@ -53,6 +92,7 @@ export default class NewTransactionHistory extends React.Component {
             leftIcon={{ type: 'material-icon', name: 'date-range' }} 
             leftIconContainerStyle = {{paddingRight: 10}}
             inputStyle = {{fontSize: 16}}
+            value = {this.state.returnDate}
             onChangeText = {(text) => this.setState({returnDate: text})}
             placeholder = "Return Date (MM/DD/YYYY)"/>
             </View>
@@ -64,7 +104,7 @@ export default class NewTransactionHistory extends React.Component {
             size = {26} 
             color = "#3163B0"
             iconStyle = {{fontSize: 33}}
-            onPress = {() => console.log(this.state)} 
+            onPress = {this.createItem} 
             reverse = {true}/>
             </View>
             </KeyboardAwareScrollView>
@@ -84,3 +124,8 @@ const styles = StyleSheet.create({
         paddingLeft: 5
     }
 })
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NewTransactionHistory)
