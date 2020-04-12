@@ -18,7 +18,7 @@ const mapStateToProps = state => {
     }
 }
 
-class NewTransactionHistory extends React.Component {
+class NewTransactionScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,11 +56,11 @@ class NewTransactionHistory extends React.Component {
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
             scrollEnabled={true}>
-            <View style = {{alignItems: 'center', paddingTop: 60}}>
+            <View style = {{alignItems: 'center', paddingTop: 65}}>
                 <Text style = {{color: "#3163B0", fontSize: 36, fontWeight: "bold", fontFamily: "Avenir"}}>Add Transaction</Text>
             </View>
             <View style = {{alignItems: 'center', justifyContent: 'center'}}>
-            <View style = {{paddingTop: 70, width: 300}}>
+            <View style = {{paddingTop: 75, width: 300}}>
             <Input
             leftIcon={{ type: 'material-community', name: 'store' }} 
             leftIconContainerStyle = {{paddingRight: 10}}
@@ -97,7 +97,7 @@ class NewTransactionHistory extends React.Component {
             placeholder = "Return Date (MM/DD/YYYY)"/>
             </View>
             </View>
-            <View style = {{alignItems: 'center', paddingTop: 35}}>
+            <View style = {{alignItems: 'center', paddingTop: 45}}>
             <Icon 
             type = "material-icons" 
             name = "done" 
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(NewTransactionHistory)
+)(NewTransactionScreen)

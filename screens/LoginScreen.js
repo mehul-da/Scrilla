@@ -75,7 +75,7 @@ class LoginScreen extends React.Component {
                 Alert.alert("NOTE", 'Your email has not been verified yet. Please verify it so you can be logged in.');
             }
         }).catch((error) => {
-            Alert.alert("NOTE", "Your email has not been verified yet. Please verify it so you can be logged in.");
+            Alert.alert("NOTE", "Wrong username/password. Please try again.");
         })
     }
     render() {
