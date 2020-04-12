@@ -96,10 +96,10 @@ class CalendarScreen extends React.Component {
                 scrollEnabled={true}>
                     <View style = {{paddingTop: 20, alignItems: 'center'}}>
                     <Text style = {{fontSize: 35, color: "#3163B0"}}>{this.state.date}</Text>
-                    <View style = {{paddingTop: 30}}>
-                    {this.state.showItemsArray}
+                    <View style = {{paddingTop: 35}}>
+                    {this.state.showItemsArray.length == 0 ? <Text>There are no items set for return on this date.</Text> : this.state.showItemsArray}
                     </View>
-                        <View style = {{justifyContent: 'flex-end', paddingTop: 15}}>
+                        <View style = {{justifyContent: 'flex-end', paddingTop: 25}}>
                             <AntDesign
                             name = "closecircle"
                             style = {{color: "#3163B0"}}
@@ -119,12 +119,12 @@ class CalendarScreen extends React.Component {
                     minDate = {'2020-03-01'}
                     markedDates = {this.state.markedDates}
                     onDayPress = {(day) => {
-                        this.markCalendar();
                         let properDay = (day.day > 9) ? "" + day.day : "0" + day.day;
                         let properMonth = (day.month > 9) ? "" + day.month : "0" + day.month;
                         this.findItems(`${properMonth}/${properDay}/${day.year}`)
                         this.setState({date: `${properMonth}/${properDay}/${day.year}`})
                         this.setState({showModal: true})
+                        this.setState({markedCalendar: !this.state.markedCalendar})
                         }}/>
                 </View>
             </KeyboardAwareScrollView>
