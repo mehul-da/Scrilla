@@ -26,25 +26,38 @@ class TransactionHistoryScreen extends React.Component {
         this.state = {
             keptArrayVals: [],
             returnedArrayVals: [],
-            renderRefreshOnce: false
+            moneySaved: 0
         }
     }
 
-    refresh() {
-        this.updateKept();
+    intervalID = null;
+
+    componentDidMount() {
+        this.intervalID = setInterval(this.updateBoth.bind(this), 2000);
+        this.updateBoth();
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalID)
+    }
+
+    updateBoth() {
         this.updateReturned();
+        this.updateKept();
     }
 
     updateReturned() {
         const Transactions = Parse.Object.extend("Transactions");
         const query = new Parse.Query(Transactions);
         let arrayVals = []
+        let money = 0
 
         query.equalTo("username", String(this.props.user.username))
         query.equalTo("status", "returned")
         
         query.find().then(results => {
             results.forEach((obj, key) => {
+            money = money + parseInt(obj.get('price').substr(1, 10))
             arrayVals.push(
                 <View  style = {{padding: 10}}>
                 <View style = {{borderRadius: 10, padding: 13, backgroundColor: "#C6C8CC", width: 330, height: 100, alignItems: 'center'}}>
@@ -64,7 +77,10 @@ class TransactionHistoryScreen extends React.Component {
                 </View>)}
             )
         }).then(() => 
-        {this.setState({returnedArrayVals: arrayVals})});
+        {
+            this.setState({returnedArrayVals: arrayVals})
+            this.setState({moneySaved: money})
+        });
     }
 
     updateKept() {
@@ -100,25 +116,15 @@ class TransactionHistoryScreen extends React.Component {
     }
 
     render() {
-        if (!this.state.renderRefreshOnce) {
-            this.refresh();
-            this.setState({renderRefreshOnce: !this.state.renderRefreshOnce})
-        }
         return (
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
             scrollEnabled={true}>
                 <View style = {{alignItems: 'center', paddingTop: 60, paddingBottom: 15}}>
                     <Text style = {{paddingBottom: 25, color: "#3163B0", fontSize: 36, fontWeight: "bold", fontFamily: "Avenir"}}>Transaction History</Text>
-                    <Icon
-                            type = "font-awesome"
-                            name = "refresh"
-                            color = "#3163B0"
-                            reverse = {true}
-                            size = {23}
-                            onPress={() => this.refresh()}/>
+                    <Text style = {{fontSize: 15}}>TOTAL MONEY SAVED: ${this.state.moneySaved}</Text>
                 </View>
-                <View style = {{alignItems: 'center', paddingTop: 20}}>
+                <View style = {{alignItems: 'center', paddingTop: 10}}>
                     <View style = {{paddingBottom: 15}}>
                         <Text style = {{fontSize: 20, fontFamily: "Avenir", color: "#3163B0", fontWeight: "bold"}}>RETURNED</Text>
                     </View>

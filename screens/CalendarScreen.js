@@ -26,9 +26,19 @@ class CalendarScreen extends React.Component {
             date: "",
             showModal: false,
             showItemsArray: [],
-            markedDates: {},
-            markedCalendar: false
+            markedDates: {}
         }
+    }
+
+    intervalID = null;
+
+    componentDidMount() {
+        this.intervalID = setInterval(this.markCalendar.bind(this), 7000);
+        this.markCalendar();
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalID)
     }
 
     markCalendar() {
@@ -77,11 +87,6 @@ class CalendarScreen extends React.Component {
     }
 
     render() {
-        if (!this.state.markedCalendar) {
-            this.markCalendar();
-            this.setState({markedCalendar: !this.state.markedCalendar})
-        }
-
         return (
             <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
