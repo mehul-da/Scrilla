@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Parse from 'parse';
-import 'localstorage-polyfill';
 import { AsyncStorage } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -33,7 +32,7 @@ class TransactionHistoryScreen extends React.Component {
     intervalID = null;
 
     componentDidMount() {
-        this.intervalID = setInterval(this.updateBoth.bind(this), 2000);
+        this.intervalID = setInterval(this.updateBoth.bind(this), 100000);
         this.updateBoth();
     }
 

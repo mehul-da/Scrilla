@@ -3,7 +3,6 @@ import { Text, View, Modal, Alert, TouchableHighlight } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { AntDesign } from 'react-native-vector-icons';
 import Parse from 'parse'
-import 'localstorage-polyfill'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -33,7 +32,7 @@ class CalendarScreen extends React.Component {
     intervalID = null;
 
     componentDidMount() {
-        this.intervalID = setInterval(this.markCalendar.bind(this), 3000);
+        this.intervalID = setInterval(this.markCalendar.bind(this), 100000);
         this.markCalendar();
     }
 

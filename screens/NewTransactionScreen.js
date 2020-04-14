@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, View, TextInput, StyleSheet, AsyncStorage, Alert } from 'react-native';
 import Parse from 'parse'
-import 'localstorage-polyfill'
 import { Icon, Input } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { bindActionCreators } from 'redux'

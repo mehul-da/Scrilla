@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Text, View, Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Parse from 'parse';
-import 'localstorage-polyfill';
 import { AsyncStorage } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -30,7 +29,7 @@ class HomeScreen extends React.Component {
     intervalID = null;
 
     componentDidMount() {
-        this.intervalID = setInterval(this.findItemsWithinAMonth.bind(this), 2000);
+        this.intervalID = setInterval(this.findItemsWithinAMonth.bind(this), 1000000);
         this.findItemsWithinAMonth();
     }
 

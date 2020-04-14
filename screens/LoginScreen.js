@@ -2,7 +2,6 @@ import * as React from 'react';
 import { View, Text, StyleSheet, TextInput, Image, Alert } from 'react-native';
 import { Icon, ThemeProvider, Input } from  'react-native-elements';
 import Parse from 'parse';
-import 'localstorage-polyfill';
 import { AsyncStorage } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
