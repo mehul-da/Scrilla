@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
     intervalID = null;
 
     componentDidMount() {
-        this.intervalID = setInterval(this.findItemsWithinAMonth.bind(this), 1000000);
+        this.intervalID = setInterval(this.findItemsWithinAMonth.bind(this), 100000);
         this.findItemsWithinAMonth();
     }
 
