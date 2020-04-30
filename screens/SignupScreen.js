@@ -20,8 +20,8 @@ const mapStateToProps = state => {
 Parse.setAsyncStorage(AsyncStorage);
 Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
 Parse.initialize(
-   'G0R2zZz5RW2gdK2QYz1rrtFLaOwh2sGRL9PoFJMY', // This is your Application ID
-  'tPM7b3CMduKdNA34LkYrAmBw0LND1fk2eupLxvNl' // This is your Javascript key
+    "wtfcr2EX0Kc4509Pyz32XMNGEmDzXh1XxsgRr0k5", // This is your Application ID
+  'aKl8va1IdTM0zo82zE2qzovjNzODZsbA7E5aSIu4' // This is your Javascript key
 );
 
 
