@@ -1,0 +1,2 @@
+# Scrilla
+This is an application created using React Native as part of the Texas Convergent Spring 2020 Finance Tech Build Team. The application helps users with budgeting by overseeing their finances, displaying their transaction records, and maintaining a system to handle the returning of purchased items before the return deadline of the specific item. Used the Back4App REST API for our Backend-as-a-Service (BaaS).
