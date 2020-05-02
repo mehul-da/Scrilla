@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet, TextInput, Image, Alert } from 'react-native';
 import { Icon, ThemeProvider, Input } from  'react-native-elements';
 import Parse from 'parse';
+import localStorage from 'localstorage-polyfill';
 import { AsyncStorage } from 'react-native';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -20,8 +21,8 @@ const mapStateToProps = state => {
 Parse.setAsyncStorage(AsyncStorage);
 Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
 Parse.initialize(
-   'G0R2zZz5RW2gdK2QYz1rrtFLaOwh2sGRL9PoFJMY', // This is your Application ID
-  'tPM7b3CMduKdNA34LkYrAmBw0LND1fk2eupLxvNl' // This is your Javascript key
+    "wtfcr2EX0Kc4509Pyz32XMNGEmDzXh1XxsgRr0k5", // This is your Application ID
+  'aKl8va1IdTM0zo82zE2qzovjNzODZsbA7E5aSIu4' // This is your Javascript key
 );
 
 
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
     icon: {
         alignSelf: 'center',
         justifyContent: 'center',
-        paddingTop: 15,
-        paddingBottom: 5
+        paddingTop: 23,
+        paddingBottom: 18
     },
     smallText: {
         color: 'black',
@@ -125,13 +126,11 @@ class SignupScreen extends React.Component {
                     leftIcon={{ type: 'material-community', name: 'textbox-password' }} />
                 </View>
                 <View style = {styles.icon}>
-                    <Icon
-                        raised = {true}
-                        reverse = {true}
-                        color = '#3163B0'
-                        name='login'
-                        type='material-community'
-                        onPress={this.handleSignup} />
+                <View style = {{borderWidth: 1, borderRadius: 10, borderColor: '#3163B0', backgroundColor: '#3163B0'}}>
+                        <Text
+                            style = {{padding: 9, color: 'white', fontSize: 18}} 
+                            onPress={this.handleSignup}>Sign Up</Text>
+                    </View>
                 </View>
                 <View>
                     <Text style = {styles.smallText}> Already have an account? </Text>
