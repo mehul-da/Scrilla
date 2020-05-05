@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         color: '#3163B0',
         fontSize: 30,
+        fontWeight: 'bold',
         fontFamily: 'Avenir',
         paddingBottom: 10
     },
@@ -53,8 +54,8 @@ const styles = StyleSheet.create({
     icon: {
         alignSelf: 'center',
         justifyContent: 'center',
-        paddingTop: 23,
-        paddingBottom: 18
+        paddingTop: 30,
+        paddingBottom: 22
     },
     smallText: {
         color: 'black',
@@ -128,7 +129,7 @@ class SignupScreen extends React.Component {
                 <View style = {styles.icon}>
                 <View style = {{borderWidth: 1, borderRadius: 10, borderColor: '#3163B0', backgroundColor: '#3163B0'}}>
                         <Text
-                            style = {{padding: 9, color: 'white', fontSize: 18}} 
+                            style = {{paddingTop: 9, paddingBottom: 9, paddingLeft: 90, paddingRight: 90, color: 'white', fontSize: 18}} 
                             onPress={this.handleSignup}>Sign Up</Text>
                     </View>
                 </View>

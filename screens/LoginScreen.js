@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     icon: {
         alignSelf: 'center',
         justifyContent: 'center',
-        paddingTop: 23,
-        paddingBottom: 18,
+        paddingTop: 30,
+        paddingBottom: 22,
     },
     smallText: {
         color: 'black',
@@ -81,8 +81,8 @@ class LoginScreen extends React.Component {
     render() {
         return (
             <View style = {{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
-                <View style = {{paddingBottom: 20}}>
-                <Image source = {require('../logoScrilla.png')} style = {{width: 350, height: 120, alignSelf: 'center'}}/>
+                <View style = {{paddingBottom: 25}}>
+                <Image source = {require('../logoScrilla.png')} style = {{width: 280, height: 120, alignSelf: 'center'}}/>
                 </View>
                 <View style = {styles.inputText}>
                     <Input placeholder = 'Username'
@@ -108,7 +108,7 @@ class LoginScreen extends React.Component {
                 <View style = {styles.icon}>
                     <View style = {{borderWidth: 1, borderRadius: 10, borderColor: '#3163B0', backgroundColor: '#3163B0'}}>
                         <Text
-                            style = {{padding: 9, color: 'white', fontSize: 18}} 
+                            style = {{paddingTop: 9, paddingBottom: 9, paddingLeft: 90, paddingRight: 90, color: 'white', fontSize: 18}} 
                             onPress={this.handleLogin}>Log In</Text>
                     </View>
                 </View>
