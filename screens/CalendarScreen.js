@@ -32,7 +32,7 @@ class CalendarScreen extends React.Component {
     intervalID = null;
 
     componentDidMount() {
-        this.intervalID = setInterval(this.markCalendar.bind(this), 1000000);
+        this.intervalID = setInterval(this.markCalendar.bind(this), 1000);
         this.markCalendar();
     }
 

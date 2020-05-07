@@ -32,7 +32,7 @@ class TransactionHistoryScreen extends React.Component {
     intervalID = null;
 
     componentDidMount() {
-        this.intervalID = setInterval(this.updateBoth.bind(this), 100000);
+        this.intervalID = setInterval(this.updateBoth.bind(this), 1000);
         this.updateBoth();
     }
 

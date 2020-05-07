@@ -108,7 +108,7 @@ class LoginScreen extends React.Component {
                 <View style = {styles.icon}>
                     <View style = {{borderWidth: 1, borderRadius: 10, borderColor: '#3163B0', backgroundColor: '#3163B0'}}>
                         <Text
-                            style = {{paddingTop: 9, paddingBottom: 9, paddingLeft: 90, paddingRight: 90, color: 'white', fontSize: 18}} 
+                            style = {{fontWeight: 'bold' ,paddingTop: 9, paddingBottom: 9, paddingLeft: 90, paddingRight: 90, color: 'white', fontSize: 18}} 
                             onPress={this.handleLogin}>Log In</Text>
                     </View>
                 </View>
